@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".AddEventActivity">
+
+    <!-- Back Button -->
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/primaryColor"
+        android:onClick="onBackButtonClicked"
+        android:text="Powrót"
+        android:textColor="@android:color/white" />
+
+    <!-- ScrollView for Event Form -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/backButton"
+        android:layout_marginTop="-7dp"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Event Name -->
+            <EditText
+                android:id="@+id/eventName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nazwa wydarzenia"
+                android:padding="8dp" />
+
+            <!-- Start Date -->
+            <TextView
+                android:id="@+id/startDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@android:drawable/editbox_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:hint="Data rozpoczęcia"
+                android:padding="8dp" />
+
+            <!-- Start Time -->
+            <TextView
+                android:id="@+id/startTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@android:drawable/editbox_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:hint="Czas rozposzęcia"
+                android:padding="8dp" />
+
+            <!-- End Date -->
+            <TextView
+                android:id="@+id/endDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@android:drawable/editbox_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:hint="Data zakończenia"
+                android:padding="8dp" />
+
+            <!-- End Time -->
+            <TextView
+                android:id="@+id/endTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@android:drawable/editbox_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:hint="Czas zakończenia"
+                android:padding="8dp" />
+
+            <!-- Save Button -->
+            <Button
+                android:id="@+id/saveEventButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/primaryColor"
+                android:onClick="onSaveButtonClicked"
+                android:text="Zapisz"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

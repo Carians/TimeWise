@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".MainActivity">
+
+    <!-- Calendar View -->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp" />
+
+    <!-- Button Layout -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendarView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp">
+
+        <!-- Add Event Button -->
+        <Button
+            android:id="@+id/addEventButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/primaryColor"
+            android:text="Dodaj wydarzenie"
+            android:textColor="@android:color/white" />
+
+        <!-- Day View Button -->
+        <Button
+            android:id="@+id/dayViewButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primaryColor"
+            android:text="Dzisiejsze wydarzenia"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</RelativeLayout>
