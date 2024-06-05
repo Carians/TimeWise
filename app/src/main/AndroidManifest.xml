@@ -26,7 +26,8 @@
         <activity android:name=".AddEventActivity"/>
         <activity android:name=".EventDetailsActivity"/>
         <activity android:name=".DayViewActivity"/>
-        <!--Debug only!-->
+        <!--I used this to debug something with this but now it's just useless-->
+        <!--!TODO: Change this back to .MainActivity-->
         <activity android:name=".MainActivity"/>
     </application>
 
