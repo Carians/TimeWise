@@ -8,13 +8,16 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONObject
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import androidx.lifecycle.ViewModel
 
 class AddEventActivity : AppCompatActivity() {
 
@@ -25,6 +28,7 @@ class AddEventActivity : AppCompatActivity() {
     private lateinit var endTime: TextView
     private lateinit var saveEventButton: Button
     private val calendar = Calendar.getInstance()
+    private val viewModel: AddEventViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,13 @@ class AddEventActivity : AppCompatActivity() {
         endDate = findViewById(R.id.endDate)
         endTime = findViewById(R.id.endTime)
         saveEventButton = findViewById(R.id.saveEventButton)
+
+        // Restore data from ViewModel
+        eventName.setText(viewModel.eventName)
+        startDate.text = viewModel.startDate
+        startTime.text = viewModel.startTime
+        endDate.text = viewModel.endDate
+        endTime.text = viewModel.endTime
 
         startDate.setOnClickListener { showDatePickerDialog(startDate) }
         startTime.setOnClickListener { showTimePickerDialog(startTime) }
@@ -56,6 +67,12 @@ class AddEventActivity : AppCompatActivity() {
             calendar.set(selectedYear, selectedMonth, selectedDay)
             val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             dateView.text = sdf.format(calendar.time)
+
+            // Save data to ViewModel
+            when (dateView.id) {
+                R.id.startDate -> viewModel.startDate = sdf.format(calendar.time)
+                R.id.endDate -> viewModel.endDate = sdf.format(calendar.time)
+            }
         }, year, month, day).show()
     }
 
@@ -68,6 +85,12 @@ class AddEventActivity : AppCompatActivity() {
             calendar.set(Calendar.MINUTE, selectedMinute)
             val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
             timeView.text = sdf.format(calendar.time)
+
+            // Save data to ViewModel
+            when (timeView.id) {
+                R.id.startTime -> viewModel.startTime = sdf.format(calendar.time)
+                R.id.endTime -> viewModel.endTime = sdf.format(calendar.time)
+            }
         }, hour, minute, true).show()
     }
 
@@ -108,7 +131,7 @@ class AddEventActivity : AppCompatActivity() {
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e("AddEventActivity", "Błąd API: ", e)
+//                Log.e("AddEventActivity", "Błąd API: ", e)
                 runOnUiThread {
                     Toast.makeText(this@AddEventActivity, "Błąd przy zapisie wydarzenia", Toast.LENGTH_SHORT).show()
                 }
@@ -116,7 +139,7 @@ class AddEventActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
                 val responseData = response.body?.string()
-                Log.d("AddEventActivity", "Response received: $responseData")
+//                Log.d("AddEventActivity", "Response received: $responseData")
                 runOnUiThread {
                     if (response.isSuccessful) {
                         Toast.makeText(this@AddEventActivity, "Wydarzenie zapisane", Toast.LENGTH_SHORT).show()
